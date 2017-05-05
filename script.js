@@ -26,8 +26,18 @@ $.ajax({
     function updateUserInformation(index, user) {
 
      var $user = $('.user-profile').eq(index);
-         $user.find('.name').text(user.name);
-        }
+         $user.find('.name').text(user.name.first + " " + user.name.last);
+         $user.find('.company').find('.name').text(user.company.name);
+         $user.find('.company').find('.street').text(user.company.address.street);
+         $user.find('.company').find('.city').text(user.company.address.city);
+         $user.find('.company').find('span').find('.state').text(user.company.address.state);
+         $user.find('.company').find('.zip').text(user.company.zip);
+         $user.find('a').text(user.company.email);
+         $user.find('.company')
+        .find('a')
+        .text(user.email)
+        .attr('href', "mailto:" + user.company.email);
+      $user.css("background-color", user.favoriteColor);
 
 // 1. Create a new function that updates one user at a time. Call this new function inside the loop in step 4.
 
@@ -48,6 +58,7 @@ $.ajax({
 // ### The HTML page should produce an image like so:
 
 // ![output](./output.jpg)
+        }
 
 // [fork]: https://github.com/karbassi-id/jQuery-assignment-2/fork
 // [script.js]: ./script.js
